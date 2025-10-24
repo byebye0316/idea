@@ -16,8 +16,8 @@ src/studyComponents
 .vscode/*
 !.vscode/extensions.json
 .idea
-#.vscode
-
+.vscode
+.gitignore
 .DS_Store
 *.suo
 *.ntvs*
