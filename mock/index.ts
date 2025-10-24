@@ -1,5 +1,18 @@
 // mock/user.ts
-
+    let routes=[
+        {
+            path:'/role1',
+            name:'role1',
+        },
+        {
+            path:'/role2',
+            name:'role2',
+        },
+        {
+            path:'/role3',
+            name:'role3',
+        }
+    ]
      let createUserList= [
         {
             userId: 1,
@@ -50,7 +63,8 @@ export default [
             return {
                 code: 200,
                 data: {
-                    token
+                    token,
+                    ...checkUser
                 }
             }
         }
@@ -118,6 +132,30 @@ export default [
                 code: 201,
                 data: newUser
             }
+        }
+    },
+    {
+        url:'/api/user/route',
+        methods:'get',
+        response:({query})=>{
+            const {id}=query
+            console.log(typeof id)
+            let data=[]
+            switch (id){
+                case '1':
+                    return data=[routes[0]]
+                case '2':
+                    return data=[routes[1]]
+                case '3':
+                    return data=[routes[2]];
+            }
+            return {
+                code:'200',
+                message:'success',
+                data
+            }
+
+
         }
     }
 ]

@@ -3,7 +3,7 @@
 </script>
 
 <template>
-{{"home"}}
+<p>role-2</p>
 </template>
 
 <style scoped>

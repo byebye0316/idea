@@ -3,7 +3,7 @@
 </script>
 
 <template>
-hometwo
+<p>role3</p>
 </template>
 
 <style scoped>

@@ -1,27 +1,42 @@
-import {createRouter, createWebHistory} from 'vue-router'
-// import Home from '@/views/Home.vue'
-// import About from '@/views/About.vue'
-import home from "@/components/home.vue"
-import home2 from "@/components/hometwo.vue"
-// import { useRouter, useRoute } from 'vue-router'
-//
-// const allrouter = useRouter()
-const routes = [
-    {path: '/', name: 'Home', component: home},
-    {path: '/error', name: 'error', component: home2},
-    {
-        path: '/login', name: 'Login', component: () => import('@/components/HelloWorld.vue')
-    }
+import { createRouter, createWebHistory } from 'vue-router'
+import { useUserStore } from '@/store'
+const baseRoutes = [
+    // { path: '/', name: 'Home', component: () => import('@/components/role2.vue') },
+    { path: '/login', name: 'Login', component: () => import('@/components/Login/Login.vue') },
+    { path: '/error', name: 'NotFound', component: () => import('@/components/error.vue') },
 ]
 
 const router = createRouter({
     history: createWebHistory(),
-    routes,
+    routes: baseRoutes,
 })
-router.beforeEach(async (to, from) => {
-        if (!router.hasRoute(to.name)) return {name: 'error'}
-        const token = localStorage.getItem('token')
-        if (to.name !== 'Login' && !token) return {name: 'Login'};
+
+// ✅ 避免重复添加动态路由
+let isDynamicAdded = false
+
+router.beforeEach(async (to, from, next) => {
+    const token = localStorage.getItem('token')
+    const userStore = useUserStore()
+
+    // 未登录且非 login 页面
+    if (!token && to.name !== 'Login') {
+        return next({ name: 'Login' })
     }
-)
+
+    // 已登录但未挂载动态路由
+    if (token && !isDynamicAdded) {
+        const routes = await userStore.getDynamicRoutes()
+        routes.forEach((r) => router.addRoute(r))
+        isDynamicAdded = true
+        return next({ ...to, replace: true }) // 重新进入，确保新路由生效
+    }
+
+    // 没有匹配的路由 → 404
+    if (!router.hasRoute(to.name)) {
+        return next({ name: 'NotFound' })
+    }
+
+    next()
+})
+
 export default router

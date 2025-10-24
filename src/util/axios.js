@@ -1,7 +1,5 @@
-// src/utils/request.js
 import axios from 'axios'
 import { useRouter, useRoute } from 'vue-router'
-// import router from '@/router/index.ts'
 // 创建 axios 实例
 const router = useRouter()
 const service = axios.create({
@@ -31,7 +29,7 @@ service.interceptors.response.use(
             })
         }
         // 直接返回 data，方便调用
-        return response
+        return response.data
     },
     error => {
         // 全局错误处理
