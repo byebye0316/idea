@@ -1,29 +1,30 @@
 <script setup>
-import {computed, ref} from "vue";
-import Login from "@/components/Login/Login.vue";
-import Register from "@/components/Login/Register.vue";
-
-let handleClick = () => {
-}
-let activeName = ref('Login')
-let activeComps = {
-  Login, Register
-}
-let activeComp = computed(() => {
-  return activeComps[activeName.value]
-})
+import Login from "@/components/Login/LoginAndRegister.vue";
+import TimeSvg from "@/components/Login/TimeSvg.vue";
 </script>
 
 <template>
-    <div class="min-w-[500px] bg-sky-500/50 shadow-sky-500/50 rounded-md shadow-lg p-10">
-      <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
-        <el-tab-pane label="登录" name="Login"></el-tab-pane>
-        <el-tab-pane label="注册" name="Register"></el-tab-pane>
-      </el-tabs>
-      <Component :is="activeComp" :key="activeName"></Component>
-    </div>
+  <el-container class="h-screen whiteNoise back" >
+    <el-main >
+
+      <div class="flex justify-center items-center h-full">
+        <!--        <div class="ml-auto bg-red-500 ">img</div>-->
+        <Login class="ml-auto"></Login>
+      </div>
+    </el-main>
+
+  </el-container>
+  <TimeSvg :height="'200px'" :width="'300px'" class="fixed right-0 top-0"></TimeSvg>
+
 </template>
 
 <style scoped>
+@import "@/assets/hue.css";
 
+.back {
+  background-image: url("../../assets/bghome.png");
+  background-repeat: no-repeat; /* 不重复 */
+  background-size: cover; /* 铺满整个区域 */
+  background-position: center;
+}
 </style>

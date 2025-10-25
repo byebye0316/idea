@@ -19,6 +19,7 @@ src/studyComponents
 .vscode
 .gitignore
 .DS_Store
+package-lock.json
 *.suo
 *.ntvs*
 *.njsproj

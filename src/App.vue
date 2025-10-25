@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import axios from './util/axios.js'
 import {useUserStore} from './store'
-import Home from "@/components/Home.vue";
-
 const userStore = useUserStore()
 // let route = useRouter();
 let login = async (formdata) => {
@@ -22,19 +20,16 @@ let login = async (formdata) => {
 </script>
 
 <template>
-  <div class="whiteNoise back">
-    <Home></Home>
-  </div>
-  <!--<el-button @click="login" type="primary">点击登录</el-button>-->
-  <!--  <RouterView></RouterView>-->
+<!--  <Home></Home>-->
+  <RouterView></RouterView>
 </template>
-<style>
-@import "@/assets/hue.css";
-
-.back {
-  background-image: url("./assets/bghome.png");
-  background-repeat: no-repeat; /* 不重复 */
-  background-size: cover; /* 铺满整个区域 */
-  background-position: center;
-}
+<style scoped lang="scss">
+//@import "@/assets/hue.css";
+//
+//.back {
+//  background-image: url("./assets/bghome.png");
+//  background-repeat: no-repeat;
+//  background-size: cover;
+//  background-position: center;
+//}
 </style>
