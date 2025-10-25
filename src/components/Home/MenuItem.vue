@@ -14,13 +14,11 @@
 
   <!-- 没有子节点 -->
   <el-menu-item v-else :index="item.path" :route="item.path">
-    {{ item.label +item.path}}
+    {{ item.label}}
   </el-menu-item>
 </template>
 
 <script setup>
-// import MenuItem from "./MenuItem.vue"
-
 defineProps({
   item: {
     type: Object,

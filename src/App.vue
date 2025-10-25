@@ -1,35 +1,16 @@
 <script setup lang="ts">
-import axios from './util/axios.js'
-import {useUserStore} from './store'
-const userStore = useUserStore()
-// let route = useRouter();
-let login = async (formdata) => {
-  const {data, code} = await axios.post('api/user/login', {
-    username: formdata.username,
-    password: formdata.password
-  })
-  if (code == 200) {
-    userStore.token = data.token
-    userStore.userInfo = data
-    userStore.dynamicRoutes = []
-    await userStore.getDynamicRoutes()
-  }
-}
-
-
+import Home from '@/components/Home/index.vue'
+import Login from '@/components/Login/index.vue'
+import error from '@/components/error.vue'
+import {useRoute} from "vue-router";
+import {computed, ref, watch} from "vue";
+const route=useRoute()
+let dynamicComp=ref('')
+watch(()=>route.name,(n)=>{
+  dynamicComp.value=n==='Login'?Login:(n==='Home'||!n)?Home:error
+}, { immediate: true })
 </script>
 
 <template>
-<!--  <Home></Home>-->
-  <RouterView></RouterView>
+  <Component :is="dynamicComp"></Component>
 </template>
-<style scoped lang="scss">
-//@import "@/assets/hue.css";
-//
-//.back {
-//  background-image: url("./assets/bghome.png");
-//  background-repeat: no-repeat;
-//  background-size: cover;
-//  background-position: center;
-//}
-</style>
