@@ -1,9 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useUserStore } from '@/store'
 const baseRoutes = [
+    // { path: '/', name: 'Menu', component: () => import('@/components/Home/index.vue') },
     { path: '/login', name: 'Login', component: () => import('@/components/Login/index.vue') },
-    { path: '/FormCenter/:type/:formKey', name: 'FormCenter', component: () => import('@/formCenter/index.vue') },
+    { path: '/FormCenter/:type/:formKey', name: 'FormCenter', component: () => import('@/FormCenter/index.vue') },
     { path: '/error', name: 'NotFound', component: () => import('@/components/error.vue') },
+    // { path: '/dictionary', name: 'dictionary', component: () => import('@/components/Dictionary/index.vue') },
+
 ]
 const router = createRouter({
     history: createWebHistory(),
@@ -29,7 +32,7 @@ router.beforeEach(async (to, from, next) => {
     //     isDynamicAdded = true
     //     return next({ ...to, replace: true }) // 重新进入，确保新路由生效
     // }
-    if (to.path==='/') return next()
+    console.log(to,!router.hasRoute(to.name))
     // 没有匹配的路由 → 404
     if (!router.hasRoute(to.name)) {
         return next({ name: 'NotFound' })

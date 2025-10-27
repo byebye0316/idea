@@ -1,5 +1,5 @@
 // src/utils/loadFormComponent.js
-import { ref, watch } from "vue";
+import {ref, shallowRef, watch} from "vue";
 import { useRoute } from "vue-router";
 import { useRouter } from "vue-router";
 // 自动导入 formCenter 下的所有 index.vue 文件
@@ -11,7 +11,7 @@ const formModules = import.meta.glob('@/formCenter/**/index.vue');
 export function useDynamicForm() {
     const route = useRoute();
     const router = useRouter();
-    const dynamicForm = ref(null);
+    const dynamicForm = shallowRef(null);
     const loadComponent = async () => {
         const { formKey } = route.params;
         if (!formKey) {

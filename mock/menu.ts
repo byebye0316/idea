@@ -1,4 +1,11 @@
+// todo:设计菜单，根据门户，角色设计
+
 const menuData = [
+    {
+        name: 'Dictionary',
+        label: '业务字典',
+        path: '/FormCenter/view/Dictionary',
+    },
     {
         name: 'dashboard',
         label: '仪表盘',
