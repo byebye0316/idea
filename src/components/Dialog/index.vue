@@ -1,5 +1,5 @@
 <script setup>
-import {computed} from "vue";
+import {computed, nextTick, useTemplateRef} from "vue";
 
 const props = defineProps({
   dialogVisible: {
@@ -13,9 +13,15 @@ const props = defineProps({
   title: {
     type: String,
     default: () => ''
+  },
+  type: {
+    type: String,
+    default: () => 'add',
+    required: true
   }
 })
 let handleClose = (v) => {
+  showDialog.value = false
   emits('handleClose', v)
 }
 const emits = defineEmits(
@@ -26,14 +32,26 @@ const showDialog = computed({
     return props.dialogVisible
   },
   set(v) {
-    console.log(v)
     emits('update:dialogVisible', v)
   }
 })
+const content = useTemplateRef('content')
+let confirm = async () => {
+  //todo 校验逻辑
+  if (props.type === 'del') {
+    //删除逻辑
+  }
+  if (props.type === 'edit') {
+    //删除逻辑
+  }
+  showDialog.value = false
+
+}
 </script>
 
 <template>
   <el-dialog
+      ref="content"
       v-model="showDialog"
       :title="title"
       :width="width"
@@ -43,7 +61,7 @@ const showDialog = computed({
     <template #footer>
       <div class="dialog-footer">
         <el-button @click="showDialog = false">取消</el-button>
-        <el-button type="primary" @click="showDialog = false">
+        <el-button type="primary" @click="confirm">
           确认
         </el-button>
       </div>

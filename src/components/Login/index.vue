@@ -7,7 +7,7 @@ import TimeSvg from "@/components/Login/TimeSvg.vue";
   <el-container class="h-screen whiteNoise back" >
     <el-main >
 
-      <div class="flex justify-center items-center h-full">
+      <div class="flex justify-center items-center">
         <!--        <div class="ml-auto bg-red-500 ">img</div>-->
         <Login class="ml-auto"></Login>
       </div>
