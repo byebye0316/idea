@@ -4,12 +4,12 @@ const menuData = [
     {
         name: 'Dictionary',
         label: '业务字典',
-        path: '/FormCenter/view/Dictionary',
+        path: '/dict',
     },
     {
         name: 'dashboard',
         label: '仪表盘',
-        path: '/dashboard',
+        path: '/FormCenter/view/test',
     },
     {
         name: 'employee',
@@ -70,7 +70,7 @@ const menuData = [
     {
         name: 'report',
         label: '报表中心',
-        path: '/report',
+        path: '/FormCenter/view/test2',
     },
     {
         name: 'settings',

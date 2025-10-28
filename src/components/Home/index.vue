@@ -44,7 +44,9 @@ onMounted(() => {
 
         <el-main >
 <!--          <el-scrollbar >-->
-            <RouterView class="h-full w-full"></RouterView>
+            <RouterView class="h-full w-full" >
+
+            </RouterView>
 <!--          </el-scrollbar>-->
         </el-main>
       </el-container>
